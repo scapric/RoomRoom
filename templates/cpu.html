@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+
+<head>
+	<title>Web Socket Example</title>
+	<meta charset="UTF-8">
+
+</head>
+<body>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<script>window.jQuery || document.write('<script src="{{
+	  url_for('static', filename='jquery.js') }}">\x3C/script>')</script>
+
+
+	<script>
+		function update_values() {
+			window.alert("Hello");
+            $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+            window.alert($SCRIPT_ROOT);
+            $.getJSON($SCRIPT_ROOT+"/cpu",
+                function(data) {
+                    $("#cpuload").text(data.cpu+" %")
+                });
+        }
+    </script>
+	<script>
+	window.alert(5 + 6);
+	</script>
+	<div id="cpuload"></div>
+	<script>update_values(); window.alert("Hello222");</script>
+</body>
+</html>
